@@ -9,8 +9,8 @@ import csv
 
 
 # Obtain the emails from the folder
-listLegit = os.listdir(r"Enron-Spam\legítimo")
-listSpam = os.listdir(r"Enron-Spam\no_deseado")
+listLegit = os.listdir(r"Enron-Spam/legítimo")
+listSpam = os.listdir(r"Enron-Spam/no_deseado")
 
 
 # Obtain english words
@@ -62,12 +62,12 @@ def bag_of_words(list):
 
 
 # Parsing the emails
-list_body_legit = parse_email(listLegit, r"Enron-Spam\legítimo")
-list_body_spam = parse_email(listSpam, r"Enron-Spam\no_deseado")
+list_body_legit = parse_email(listLegit, r"Enron-Spam/legítimo")
+list_body_spam = parse_email(listSpam, r"Enron-Spam/no_deseado")
 
 # Get the vocabulary of the emails
-# bag_of_words(list_body_legit)
-# bag_of_words(list_body_spam)
+bag_of_words(list_body_legit)
+bag_of_words(list_body_spam)
 
 ############### Creating CSV files ###################
 rowHeaders = ["Email", "isSpam"]
@@ -83,17 +83,16 @@ with open("spam.csv", "w", newline="", encoding="utf-8") as f:
     writer = csv.writer(f)
     writer.writerow(rowHeaders)
     for i in range(len(list_body_spam)):
-        writer.writerow([list_body_spam[i], "Yes"])
+        writer.writerow([list_body_spam[i], "isSpam"])
     f.close()
 
 with open("legit.csv", "w", newline="", encoding="utf-8") as f:
     writer = csv.writer(f)
     writer.writerow(rowHeaders)
     for i in range(len(list_body_legit)):
-        writer.writerow([list_body_legit[i], "No"])
+        writer.writerow([list_body_legit[i], "isLegit"])
     f.close()
 ####################################################
 
 dataframe1 = pd.read_csv("legit.csv")
 dataframe2 = pd.read_csv("spam.csv")
-print(dataframe1.append(dataframe2))
