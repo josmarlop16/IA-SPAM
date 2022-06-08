@@ -1,18 +1,18 @@
-import pandas as pd
-from nltk.corpus import stopwords
-from nltk.corpus import words
 import string
+
+import pandas as pd
+from nltk.corpus import stopwords, words
 from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.model_selection import train_test_split
-from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import (
     accuracy_score,
-    confusion_matrix,
     classification_report,
+    confusion_matrix,
     f1_score,
     precision_score,
     recall_score,
 )
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import MultinomialNB
 
 # Naive Bayes Multinomial Classifier
 
@@ -46,7 +46,6 @@ def bag_of_words_tokenizer(email):
         word
         for word in no_punctuation.split()
         if word.lower() not in stopwords.words("english")
-        and word.lower() in words.words("english")
     ]
     return clean_words
 
@@ -58,6 +57,7 @@ print(dataframe["Email"].head().apply(bag_of_words_tokenizer))
 bag_of_words = CountVectorizer(analyzer=bag_of_words_tokenizer).fit_transform(
     dataframe["Email"]
 )
+
 
 # Split the data into training and testing sets (60% training and 40% testing)
 # X stands for feature training dataset, y stands for target training dataset
@@ -144,6 +144,12 @@ print(
 print("F1 score (alpha=1): " + f1_score(y_test, NB_classifier.predict(X_test)))
 print("F1 score (alpha=2): " + f1_score(y_test, NB_classifier_alpha_2.predict(X_test)))
 print("F1 score (alpha=3): " + f1_score(y_test, NB_classifier_alpha_3.predict(X_test)))
+
+# with open("bag_of_words.csv", "w", newline="", encoding="utf-8") as f:
+#     writer = csv.writer(f)
+#     for i in range(len(bag_of_words)):
+#         writer.writerow([bag_of_words[i]])
+#     f.close()
 
 # TO DO:
 
