@@ -22,10 +22,10 @@ dataframe = pd.concat([dataframe1, dataframe2])
 
 # remove duplicate entries
 dataframe.drop_duplicates(inplace=True)
-print(dataframe.shape)
+# print(dataframe.shape)
 
 # remove null values
-print(dataframe.isnull().sum())
+# print(dataframe.isnull().sum())
 dataframe.dropna(inplace=True)
 
 # Create a TF-IDF Vectorizer Object
@@ -43,57 +43,22 @@ Knn_Classifier_n3 = KNeighborsClassifier(n_neighbors=3).fit(X_train, y_train)
 Knn_Classifier_n4 = KNeighborsClassifier(n_neighbors=4).fit(X_train, y_train)
 Knn_Classifier_n5 = KNeighborsClassifier(n_neighbors=5).fit(X_train, y_train)
 
-print(
-    "Classification report (n=3): \n",
-    classification_report(y_test, Knn_Classifier_n3.predict(X_test)),
-)
-print(
-    "Classification report (n=4): \n",
-    classification_report(y_test, Knn_Classifier_n4.predict(X_test)),
-)
-print(
-    "Classification report (n=5): \n",
-    classification_report(y_test, Knn_Classifier_n5.predict(X_test)),
-)
+# Let's see Classification report
+print("Classification report (n=3): \n", classification_report(y_test, Knn_Classifier_n3.predict(X_test)))
+print("Classification report (n=4): \n", classification_report(y_test, Knn_Classifier_n4.predict(X_test)))
+print("Classification report (n=5): \n", classification_report(y_test, Knn_Classifier_n5.predict(X_test)))
 # Let's see Confusion Matrix
-print(
-    "Confusion Matrix (n=3): \n ",
-    confusion_matrix(y_test, Knn_Classifier_n3.predict(X_test)),
-)
-print(
-    "Confusion Matrix (n=4): \n ",
-    confusion_matrix(y_test, Knn_Classifier_n4.predict(X_test)),
-)
-print(
-    "Confusion Matrix (n=5): \n ",
-    confusion_matrix(y_test, Knn_Classifier_n5.predict(X_test)),
-)
+print("Confusion Matrix (n=3): \n ", confusion_matrix(y_test, Knn_Classifier_n3.predict(X_test)))
+print("Confusion Matrix (n=4): \n ", confusion_matrix(y_test, Knn_Classifier_n4.predict(X_test)))
+print("Confusion Matrix (n=5): \n ", confusion_matrix(y_test, Knn_Classifier_n5.predict(X_test)))
 # Let's see Accuracy score
-print(
-    "Accuracy score (n=3): \n",
-    accuracy_score(y_test, Knn_Classifier_n3.predict(X_test)),
-)
-print(
-    "Accuracy score (n=4): \n",
-    accuracy_score(y_test, Knn_Classifier_n4.predict(X_test)),
-)
-print(
-    "Accuracy score (n=5): \n",
-    accuracy_score(y_test, Knn_Classifier_n5.predict(X_test)),
-)
+print("Accuracy score (n=3): \n", accuracy_score(y_test, Knn_Classifier_n3.predict(X_test)))
+print("Accuracy score (n=4): \n", accuracy_score(y_test, Knn_Classifier_n4.predict(X_test)))
+print("Accuracy score (n=5): \n", accuracy_score(y_test, Knn_Classifier_n5.predict(X_test)))
 # Let's see Precision score
-print(
-    "Precision score (n=3): \n",
-    precision_score(y_test, Knn_Classifier_n3.predict(X_test)),
-)
-print(
-    "Precision score (n=4): \n",
-    precision_score(y_test, Knn_Classifier_n4.predict(X_test)),
-)
-print(
-    "Precision score (n=5): \n",
-    precision_score(y_test, Knn_Classifier_n5.predict(X_test)),
-)
+print("Precision score (n=3): \n", precision_score(y_test, Knn_Classifier_n3.predict(X_test)))
+print("Precision score (n=4): \n", precision_score(y_test, Knn_Classifier_n4.predict(X_test)))
+print("Precision score (n=5): \n", precision_score(y_test, Knn_Classifier_n5.predict(X_test)))
 # Let's see Recall score
 print("Recall score (n=3): \n", recall_score(y_test, Knn_Classifier_n3.predict(X_test)))
 print("Recall score (n=4): \n", recall_score(y_test, Knn_Classifier_n4.predict(X_test)))
@@ -102,4 +67,3 @@ print("Recall score (n=5): \n", recall_score(y_test, Knn_Classifier_n5.predict(X
 print("F1 score (n=3): \n", f1_score(y_test, Knn_Classifier_n3.predict(X_test)))
 print("F1 score (n=4): \n", f1_score(y_test, Knn_Classifier_n4.predict(X_test)))
 print("F1 score (n=5): \n", f1_score(y_test, Knn_Classifier_n5.predict(X_test)))
-

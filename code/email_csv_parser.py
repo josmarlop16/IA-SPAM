@@ -44,9 +44,10 @@ def parse_email(list, path):
 # Email parser function
 
 
-def parse_email2(path):
+def preproccessEmail(path):
     # Create a list to store the email
     list_body = []
+    cleaned_email = []
     # read the email
     with open(path , encoding="latin-1") as f:
         # get the body
@@ -68,8 +69,14 @@ def parse_email2(path):
             except:
                 strtext = msg.get_payload(decode=False)
             list_body.append(strtext)
-    return list_body
-
+    for i in list_body:
+        try:
+            list_body = i.replace("<", "").replace(">", "").replace("\n", "")
+            cleaned_email.append(list_body)
+        except:
+            # Invalid email is ignored
+            pass
+    return cleaned_email
 
 def clean_email(email):
     # remove html tags and \n from an email
