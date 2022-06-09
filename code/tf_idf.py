@@ -1,8 +1,4 @@
 import pandas as pd
-from nltk.corpus import stopwords
-from nltk.corpus import words
-import string
-from sklearn.cluster import k_means
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
@@ -15,6 +11,8 @@ from sklearn.metrics import (
     recall_score,
 )
 
+print(" \n .·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·. tf-idf Classifier .·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.")
+
 # Creating DataFrames
 dataframe1 = pd.read_csv("legit.csv")
 dataframe2 = pd.read_csv("spam.csv")
@@ -22,21 +20,18 @@ dataframe = pd.concat([dataframe1, dataframe2])
 
 # remove duplicate entries
 dataframe.drop_duplicates(inplace=True)
-# print(dataframe.shape)
 
 # remove null values
-# print(dataframe.isnull().sum())
 dataframe.dropna(inplace=True)
 
 # Create a TF-IDF Vectorizer Object
 tfidf_vectorizer = TfidfVectorizer(stop_words="english")
+
 # Fit the TF-IDF vectorizer to the training data
 features = tfidf_vectorizer.fit_transform(dataframe["Email"])
 
 # Split the data into training and testing sets (60% training and 40% testing)
-X_train, X_test, y_train, y_test = train_test_split(
-    features, dataframe["isSpam"], test_size=0.4, random_state=42
-)
+X_train, X_test, y_train, y_test = train_test_split(features, dataframe["isSpam"], test_size=0.4, random_state=42)
 
 # KNN Classifier
 Knn_Classifier_n3 = KNeighborsClassifier(n_neighbors=3).fit(X_train, y_train)
@@ -67,3 +62,6 @@ print("Recall score (n=5): \n", recall_score(y_test, Knn_Classifier_n5.predict(X
 print("F1 score (n=3): \n", f1_score(y_test, Knn_Classifier_n3.predict(X_test)))
 print("F1 score (n=4): \n", f1_score(y_test, Knn_Classifier_n4.predict(X_test)))
 print("F1 score (n=5): \n", f1_score(y_test, Knn_Classifier_n5.predict(X_test)))
+print(".·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·..·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.")
+print("¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·")
+print("\n")

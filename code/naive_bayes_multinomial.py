@@ -1,9 +1,6 @@
 import string
-import email_csv_parser
 import pandas as pd
 from nltk.corpus import stopwords, words
-from sklearn import svm
-from email_csv_parser import preproccessEmail
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics import (
     accuracy_score,
@@ -19,8 +16,6 @@ from sklearn.naive_bayes import MultinomialNB
 # nltk.download("stopwords")
 # nltk.download("words")
 
-
-#.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·. Naive Bayes Multinomial Classifier .·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.
 print(".·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·. Naive Bayes Multinomial Classifier .·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.")
 
 # Creating DataFrames
@@ -57,7 +52,7 @@ bag_of_words = cv.fit_transform(dataframe["Email"])
 
 # Split the data into training and testing sets (60% training and 40% testing)
 # X stands for feature training dataset, y stands for target training dataset
-X_train, X_test, y_train, y_test = train_test_split( bag_of_words, dataframe["isSpam"], test_size=0.4, random_state=42, shuffle=True)
+X_train, X_test, y_train, y_test = train_test_split(bag_of_words, dataframe["isSpam"], test_size=0.4, random_state=42, shuffle=True)
 
 # Create a Polynomial Naive Bayes classifier and train it with the datasets
 # Softened hyperparameter is alpha
@@ -89,6 +84,10 @@ print("Recall score (alpha=3): \n", recall_score(y_test, NB_classifier_alpha_3.p
 print("F1 score (alpha=1): \n", f1_score(y_test, NB_classifier_alpha_1.predict(X_test)))
 print("F1 score (alpha=2): \n", f1_score(y_test, NB_classifier_alpha_2.predict(X_test)))
 print("F1 score (alpha=3): \n", f1_score(y_test, NB_classifier_alpha_3.predict(X_test)))
+
+print(".·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·..·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.")
+print("¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·")
+print("\n")
 
 # TO DO:
 # Aplicar tecnicas para mejorar el modelo:
