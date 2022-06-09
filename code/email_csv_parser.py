@@ -5,7 +5,14 @@ from email import policy
 import csv
 import splitfolders
 
-# splitfolders.fixed(r'Enron-Spam/',output="src", seed=42, fixed=(500, 500), oversample=False, group_prefix=None)
+# splitfolders.fixed(
+#     r"Enron-Spam/",
+#     output="src",
+#     seed=42,
+#     fixed=(500, 500),
+#     oversample=False,
+#     group_prefix=None,
+# )
 
 # Obtain the emails from the folder
 listLegit = os.listdir(r"src/test/legítimo")
@@ -40,6 +47,7 @@ def parse_email(list, path):
                 list_body.append(strtext)
     return list_body
 
+
 # Parsing the emails
 list_body_legit = parse_email(listLegit, r"src/test/legítimo")
 list_body_spam = parse_email(listSpam, r"src/test/no_deseado")
@@ -58,6 +66,7 @@ def clean_email(email):
             # Invalid email is ignored
             pass
     return cleaned_email
+
 
 # Cleaning the emails
 list_body_legit_cleaned = clean_email(list_body_legit)
@@ -88,7 +97,7 @@ def preproccessEmail(path):
     # Create a list to store the cleaned email
     cleaned_email = []
     # read the email
-    with open(path , encoding="latin-1") as f:
+    with open(path, encoding="latin-1") as f:
         # get the body
         msg = email.message_from_file(f)
         if msg.is_multipart():
@@ -116,5 +125,3 @@ def preproccessEmail(path):
             # Invalid email is ignored
             pass
     return cleaned_email
-
-
