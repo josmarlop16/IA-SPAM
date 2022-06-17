@@ -32,7 +32,6 @@ def bag_of_words_tokenizer(email):
     lemmatized_words = lemmatize_words(stemmed_words)
     return lemmatized_words
 
-
 # import lemmatizer
 lemmanator = WordNetLemmatizer()
 
@@ -42,7 +41,6 @@ def lemmatize_words(words):
     for word in words:
         lemmatized_words.append(lemmanator.lemmatize(word))
     return lemmatized_words
-
 
 # import stemmer
 Stemmerator = PorterStemmer()
@@ -54,7 +52,6 @@ def stem_words(words):
         stemmed_words.append(Stemmerator.stem(word))
     return stemmed_words
 
-
 # training the vectorizer
 def train_countvectorizer(dataframe):
     # Create a bag of words vectorizer
@@ -63,11 +60,10 @@ def train_countvectorizer(dataframe):
     bag_of_words = count_vectorizer.fit_transform(dataframe)
     return bag_of_words
 
-
 # Create a bag of words vectorizer and fit it to the dataframe
 cv = CountVectorizer(analyzer=bag_of_words_tokenizer)
 bag_of_words = cv.fit_transform(dataframe["Email"])
 
-# Serialization with pickle
-with open("vectorizer.pickle", "wb") as f:
-    cPickle.dump(cv, f, protocol=-1)
+# # Serialization with pickle
+# with open("vectorizer.pickle", "wb") as f:
+#     cPickle.dump(cv, f, protocol=-1)

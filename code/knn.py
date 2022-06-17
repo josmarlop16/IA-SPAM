@@ -161,8 +161,8 @@ print(
 print("\n")
 
 # Serialization with Pickle
-with open("knn.pickle", "wb") as f:
-    cPickle.dump(Knn_Classifier_n15, f, protocol=-1)
+# with open("knn.pickle", "wb") as f:
+#     cPickle.dump(Knn_Classifier_n15, f, protocol=-1)
 
-with open("knnvectorizer.pickle", "wb") as f:
-    cPickle.dump(tfidf_vectorizer, f, protocol=-1)
+# with open("knnvectorizer.pickle", "wb") as f:
+#     cPickle.dump(tfidf_vectorizer, f, protocol=-1)

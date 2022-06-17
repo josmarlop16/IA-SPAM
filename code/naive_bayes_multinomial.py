@@ -132,6 +132,6 @@ print(
 )
 print("\n")
 
-# Serialization with Pickle
-with open("nbm.pickle", "wb") as f:
-    cPickle.dump(NB_classifier_alpha_10, f, protocol=-1)
+# # Serialization with Pickle
+# with open("nbm.pickle", "wb") as f:
+#     cPickle.dump(NB_classifier_alpha_10, f, protocol=-1)
