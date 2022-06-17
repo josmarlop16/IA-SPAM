@@ -1,12 +1,13 @@
 from email_csv_parser import preproccessEmail
-import _pickle as cPickle
 from vectorizer import bag_of_words_tokenizer
+import pickle as cPickle
 
-nbmA15 = cPickle.load(open('nbm.pickle', 'rb'))
-cv = cPickle.load(open('vectorizer.pickle', 'rb'))
 
-knn = cPickle.load(open('knn.pickle', 'rb'))
-feat = cPickle.load(open('knnvectorizer.pickle', 'rb'))
+nbmA15 = cPickle.load(open("nbm.pickle", "rb"))
+cv = cPickle.load(open("vectorizer.pickle", "rb"))
+
+knn = cPickle.load(open("knn.pickle", "rb"))
+feat = cPickle.load(open("knnvectorizer.pickle", "rb"))
 
 
 def es_mensaje_no_deseado_NB(path):

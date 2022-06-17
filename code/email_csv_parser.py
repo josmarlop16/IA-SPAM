@@ -59,7 +59,7 @@ def parse_email(list, path):
                     )
                     list_hasHTML.append(hasHTML)
                 list_body.append(strtext)
-    return list_body, list_hasHTML
+    return list_body
 
 
 # Parsing the emails
@@ -73,20 +73,22 @@ def clean_email(emailList):
     cleaned_email = []
     for email in emailList:
         try:
+            # extract text from html
+            email = BeautifulSoup(email, "html.parser").text
             # To lower case
             email = email.lower()
+            # Strip email
+            email = email.strip()
+            # Remove \n
+            email = email.replace("\n", "")
             # Remove html tags
             email = re.sub("<[^<>]+>", " ", email)
-            # email = striphtml(email)
-            # email = email.replace("<", "").replace(">", "").replace("/n", "")
             # Normalize numbers
             email = re.sub("[0-9]+", "number", email)
             # Normalize URLs
             email = re.sub("(http|https)://[^\s]*", "httpAddress", email)
             # Normalize email addresses
             email = re.sub("[^\s]+@[^\s]+", "emailAddress", email)
-
-            # se pueden añadir mas cosas
 
             cleaned_email.append(email)
         except:
@@ -156,8 +158,6 @@ def preproccessEmail(path):
             e = e.replace("\n", "")
             # Remove html tags
             e = re.sub("<[^<>]+>", " ", e)
-            # email = striphtml(email)
-            # email = email.replace("<", "").replace(">", "").replace("/n", "")
             # Normalize numbers
             e = re.sub("[0-9]+", "number", e)
             # Normalize URLs

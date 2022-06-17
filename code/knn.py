@@ -1,5 +1,3 @@
-import _pickle as cPickle
-import pickle
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
@@ -16,6 +14,7 @@ from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 from nltk.stem import WordNetLemmatizer
 import string
+import pickle as cPickle
 
 print(" \n .·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·. kNN Classifier .·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.")
 
@@ -29,7 +28,6 @@ dataframe.drop_duplicates(inplace=True)
 
 # remove null values
 dataframe.dropna(inplace=True)
-
 # Function that obtain a bag of tokenized words
 def bag_of_words_tokenizer(email):
     # Remove punctuation
@@ -45,6 +43,7 @@ def bag_of_words_tokenizer(email):
     lemmatized_words = lemmatize_words(stemmed_words)
     return lemmatized_words
 
+
 # import lemmatizer
 lemmanator = WordNetLemmatizer()
 
@@ -55,7 +54,7 @@ def lemmatize_words(words):
         lemmatized_words.append(lemmanator.lemmatize(word))
     return lemmatized_words
 
-# import stemmer
+
 Stemmerator = PorterStemmer()
 
 # function that stems words using PorterStemmer from nltk
@@ -65,12 +64,18 @@ def stem_words(words):
         stemmed_words.append(Stemmerator.stem(word))
     return stemmed_words
 
+
 # Create a TF-IDF Vectorizer Object
 tfidf_vectorizer = TfidfVectorizer(analyzer=bag_of_words_tokenizer)
 
 # Fit the TF-IDF vectorizer to the training data
 features = tfidf_vectorizer.fit_transform(dataframe["Email"])
-
+# # Convert to dataframe
+# features = pd.DataFrame(
+#     features.todense(), columns=tfidf_vectorizer.get_feature_names()
+# )
+# features.to_csv("features.csv", index=False)
+# features = pd.read_csv("features.csv")
 # Split the data into training and testing sets (60% training and 40% testing)
 X_train, X_test, y_train, y_test = train_test_split(
     features, dataframe["isSpam"], test_size=0.4, random_state=42
@@ -80,7 +85,6 @@ X_train, X_test, y_train, y_test = train_test_split(
 Knn_Classifier_n10 = KNeighborsClassifier(n_neighbors=10).fit(X_train, y_train)
 Knn_Classifier_n15 = KNeighborsClassifier(n_neighbors=15).fit(X_train, y_train)
 Knn_Classifier_n20 = KNeighborsClassifier(n_neighbors=20).fit(X_train, y_train)
-
 # Let's see Classification report
 print(
     "Classification report (n=10): \n",
@@ -135,24 +139,18 @@ print(
 )
 # Let's see Recall score
 print(
-    "Recall score (n=10): \n", recall_score(
-        y_test, Knn_Classifier_n10.predict(X_test))
+    "Recall score (n=10): \n", recall_score(y_test, Knn_Classifier_n10.predict(X_test))
 )
 print(
-    "Recall score (n=15): \n", recall_score(
-        y_test, Knn_Classifier_n15.predict(X_test))
+    "Recall score (n=15): \n", recall_score(y_test, Knn_Classifier_n15.predict(X_test))
 )
 print(
-    "Recall score (n=20): \n", recall_score(
-        y_test, Knn_Classifier_n20.predict(X_test))
+    "Recall score (n=20): \n", recall_score(y_test, Knn_Classifier_n20.predict(X_test))
 )
 # Let's see F1 score
-print("F1 score (n=10): \n", f1_score(
-    y_test, Knn_Classifier_n10.predict(X_test)))
-print("F1 score (n=15): \n", f1_score(
-    y_test, Knn_Classifier_n15.predict(X_test)))
-print("F1 score (n=20): \n", f1_score(
-    y_test, Knn_Classifier_n20.predict(X_test)))
+print("F1 score (n=10): \n", f1_score(y_test, Knn_Classifier_n10.predict(X_test)))
+print("F1 score (n=15): \n", f1_score(y_test, Knn_Classifier_n15.predict(X_test)))
+print("F1 score (n=20): \n", f1_score(y_test, Knn_Classifier_n20.predict(X_test)))
 
 print(
     ".·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·..·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·."
@@ -162,9 +160,9 @@ print(
 )
 print("\n")
 
-import _pickle as cPickle
-with open('knn.pickle', 'wb') as f:
-   cPickle.dump(Knn_Classifier_n15, f, protocol=-1)
+# Serialization with Pickle
+with open("knn.pickle", "wb") as f:
+    cPickle.dump(Knn_Classifier_n15, f, protocol=-1)
 
-with open('knnvectorizer.pickle', 'wb') as f:
-   cPickle.dump(tfidf_vectorizer, f, protocol=-1)
+with open("knnvectorizer.pickle", "wb") as f:
+    cPickle.dump(tfidf_vectorizer, f, protocol=-1)

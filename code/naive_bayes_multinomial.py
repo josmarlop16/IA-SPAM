@@ -10,6 +10,7 @@ from sklearn.metrics import (
 )
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import MultinomialNB
+import pickle as cPickle
 
 # nltk.download("stopwords")
 # nltk.download("words")
@@ -117,17 +118,10 @@ print(
 )
 
 # Let's see F1 score
+print("F1 score (alpha=1): \n", f1_score(y_test, NB_classifier_alpha_1.predict(X_test)))
+print("F1 score (alpha=5): \n", f1_score(y_test, NB_classifier_alpha_5.predict(X_test)))
 print(
-    "F1 score (alpha=1): \n",
-     f1_score(y_test, NB_classifier_alpha_1.predict(X_test))
-)
-print(
-    "F1 score (alpha=5): \n", 
-    f1_score(y_test, NB_classifier_alpha_5.predict(X_test))
-)
-print(
-    "F1 score (alpha=10): \n", 
-    f1_score(y_test, NB_classifier_alpha_10.predict(X_test))
+    "F1 score (alpha=10): \n", f1_score(y_test, NB_classifier_alpha_10.predict(X_test))
 )
 
 print(
@@ -138,7 +132,6 @@ print(
 )
 print("\n")
 
-# import pickle
-# with open('nbm.pickle', 'wb') as f:
-#    pickle.dump(NB_classifier_alpha_10, f)
-
+# Serialization with Pickle
+with open("nbm.pickle", "wb") as f:
+    cPickle.dump(NB_classifier_alpha_10, f, protocol=-1)
