@@ -47,6 +47,7 @@ def parse_email(list, path):
                 list_body.append(strtext)
     return list_body
 
+
 # Parsing the emails
 list_body_legit = parse_email(listLegit, r"Enron-spam/legítimo")
 list_body_spam = parse_email(listSpam, r"Enron-spam/no_deseado")
@@ -83,6 +84,7 @@ def clean_email(emailList):
                 cleaned_email.append(email)
     return cleaned_email
 
+
 # Cleaning the emails
 list_body_legit_cleaned = clean_email(list_body_legit)
 list_body_spam_cleaned = clean_email(list_body_spam)
@@ -104,4 +106,3 @@ with open("legit.csv", "w", newline="", encoding="utf-8") as f:
         writer.writerow([list_body_legit_cleaned[i], "0"])
     f.close()
 ####################################################
-
