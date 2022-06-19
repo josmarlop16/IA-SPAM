@@ -4,6 +4,8 @@ import email
 import re
 import time
 
+## Los metodos y lineas de codigo comentadas son para la version de prueba de la practica ##
+
 # count time of execution
 start_time = time.time()
 
@@ -63,7 +65,6 @@ def preproccessEmail(path):
                 cleaned_email.append(e)
     return cleaned_email
 
-
 # def es_mensaje_no_deseado_NB(path):
 #     # Preproccess the email
 #     transformed_text = preproccessEmail(path)
@@ -78,13 +79,11 @@ def preproccessEmail(path):
 #     else:
 #         return True
 
-
 # print(
 #     "Naive Bayes Detector -> ¿Este correo es spam? ",
 #     es_mensaje_no_deseado_NB(r"src/test/no_deseado/604"),
 #     "\n",
 # )
-
 
 def es_mensaje_no_deseado_kNN(path):
     # Preproccess the email
@@ -100,9 +99,8 @@ def es_mensaje_no_deseado_kNN(path):
     else:
         return True
 
-
 print(
     "kNN Detector -> ¿Este correo es spam? ",
-    es_mensaje_no_deseado_kNN(r"src/test/no_deseado/604"),
+    es_mensaje_no_deseado_kNN(r"src/test/legítimo/622"),
     "\n",
 )

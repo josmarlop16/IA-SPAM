@@ -17,6 +17,8 @@ import pickle as cPickle
 # nltk.download("wordnet")
 # nltk.download("omw-1.4")
 
+## Los metodos y lineas de codigo comentadas son para la version de prueba de la practica ##
+
 print(
     ".·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·|| Naive Bayes Multinomial Classifier ||·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·."
 )

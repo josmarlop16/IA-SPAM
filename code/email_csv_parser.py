@@ -5,6 +5,8 @@ from bs4 import BeautifulSoup
 import re
 import pickle as cPickle
 
+## Los metodos y lineas de codigo comentadas son para la version de prueba de la practica ##
+
 # splitfolders.fixed(
 #     r"Enron-Spam/",
 #     output="src",
@@ -83,7 +85,6 @@ def clean_email(emailList):
                 email = ",".join(str(char) for char in email)
                 cleaned_email.append(email)
     return cleaned_email
-
 
 # Cleaning the emails
 list_body_legit_cleaned = clean_email(list_body_legit)

@@ -6,6 +6,8 @@ from nltk.stem import WordNetLemmatizer
 from sklearn.feature_extraction.text import CountVectorizer
 import pickle as cPickle
 
+## Los metodos y lineas de codigo comentadas son para la version de prueba de la practica ##
+
 # Creating DataFrames
 dataframe1 = pd.read_csv("legit.csv")
 dataframe2 = pd.read_csv("spam.csv")
@@ -32,7 +34,6 @@ def bag_of_words_tokenizer(email):
     lemmatized_words = lemmatize_words(stemmed_words)
     return lemmatized_words
 
-
 # import lemmatizer
 lemmanator = WordNetLemmatizer()
 
@@ -42,7 +43,6 @@ def lemmatize_words(words):
     for word in words:
         lemmatized_words.append(lemmanator.lemmatize(word))
     return lemmatized_words
-
 
 # import stemmer
 Stemmerator = PorterStemmer()
@@ -54,7 +54,6 @@ def stem_words(words):
         stemmed_words.append(Stemmerator.stem(word))
     return stemmed_words
 
-
 # training the vectorizer
 def train_countvectorizer(dataframe):
     # Create a bag of words vectorizer
@@ -62,7 +61,6 @@ def train_countvectorizer(dataframe):
     # Fit the bag of words vectorizer to the training set
     bag_of_words = count_vectorizer.fit_transform(dataframe)
     return bag_of_words
-
 
 # Create a bag of words vectorizer and fit it to the dataframe (Uncomment to train the vectorizer)
 # cv = CountVectorizer(analyzer=bag_of_words_tokenizer)
