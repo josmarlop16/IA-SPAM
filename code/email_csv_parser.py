@@ -85,7 +85,7 @@ def clean_email(emailList):
                 email = ",".join(str(char) for char in email)
                 cleaned_email.append(email)
     return cleaned_email
-
+    
 # Cleaning the emails
 list_body_legit_cleaned = clean_email(list_body_legit)
 list_body_spam_cleaned = clean_email(list_body_spam)
