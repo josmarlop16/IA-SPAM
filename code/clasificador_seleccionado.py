@@ -2,21 +2,9 @@ from vectorizer import bag_of_words_tokenizer
 import pickle as cPickle
 import email
 import re
-import time
-
-## Los metodos y lineas de codigo comentadas son para la version de prueba de la practica ##
-
-# count time of execution
-start_time = time.time()
-
-print("Loading pickles")
-# nbmA15 = cPickle.load(open("nbm.pickle", "rb"))
-# cv = cPickle.load(open("vectorizer.pickle", "rb"))
 
 knn = cPickle.load(open("knn.pickle", "rb"))
 feat = cPickle.load(open("knnvectorizer.pickle", "rb"))
-
-print("Pickles loaded in", time.time() - start_time, "seconds")
 
 # Email preproccessing function
 def preproccessEmail(path):
@@ -65,26 +53,6 @@ def preproccessEmail(path):
                 cleaned_email.append(e)
     return cleaned_email
 
-# def es_mensaje_no_deseado_NB(path):
-#     # Preproccess the email
-#     transformed_text = preproccessEmail(path)
-#     # Vectorize the email
-#     cv.set_params(analyzer=bag_of_words_tokenizer)
-#     vector_input = cv.transform(transformed_text)
-#     # Predict the email
-#     result = nbmA15.predict(vector_input)
-#     # [0:NotSpam, 1:Spam]
-#     if result == 0:
-#         return False
-#     else:
-#         return True
-
-# print(
-#     "Naive Bayes Detector -> ¿Este correo es spam? ",
-#     es_mensaje_no_deseado_NB(r"src/test/no_deseado/604"),
-#     "\n",
-# )
-
 def es_mensaje_no_deseado(path):
     # Preproccess the email
     transformed_text = preproccessEmail(path)
@@ -101,6 +69,5 @@ def es_mensaje_no_deseado(path):
 
 print(
     "kNN Detector -> ¿Este correo es spam? ",
-    es_mensaje_no_deseado(r"src/test/legítimo/622"),
-    "\n",
+    es_mensaje_no_deseado(r"src/test/legítimo/622")
 )
