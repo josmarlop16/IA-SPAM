@@ -19,7 +19,7 @@ import pickle as cPickle
 
 ## Los metodos y lineas de codigo comentadas son para la version de prueba de la practica ##
 
-print(" \n .·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·. kNN Classifier .·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.")
+print(" \n .·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·|| kNN Classifier ||·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.·¨·.")
 
 # Creating DataFrames
 dataframe1 = pd.read_csv("legit.csv")

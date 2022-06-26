@@ -85,7 +85,7 @@ def preproccessEmail(path):
 #     "\n",
 # )
 
-def es_mensaje_no_deseado_kNN(path):
+def es_mensaje_no_deseado(path):
     # Preproccess the email
     transformed_text = preproccessEmail(path)
     # Vectorize the email
@@ -101,6 +101,6 @@ def es_mensaje_no_deseado_kNN(path):
 
 print(
     "kNN Detector -> ¿Este correo es spam? ",
-    es_mensaje_no_deseado_kNN(r"src/test/legítimo/622"),
+    es_mensaje_no_deseado(r"src/test/legítimo/622"),
     "\n",
 )
