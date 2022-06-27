@@ -3,18 +3,6 @@ import os
 import csv
 from bs4 import BeautifulSoup
 import re
-import pickle as cPickle
-
-## Los metodos y lineas de codigo comentadas son para la version de prueba de la practica ##
-
-# splitfolders.fixed(
-#     r"Enron-Spam/",
-#     output="src",
-#     seed=42,
-#     fixed=(500, 500),
-#     oversample=False,
-#     group_prefix=None,
-# )
 
 # Obtain the emails from the folder
 listLegit = os.listdir(r"Enron-spam/legítimo")
@@ -48,7 +36,6 @@ def parse_email(list, path):
                     strtext = msg.get_payload(decode=False)
                 list_body.append(strtext)
     return list_body
-
 
 # Parsing the emails
 list_body_legit = parse_email(listLegit, r"Enron-spam/legítimo")

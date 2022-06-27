@@ -63,11 +63,9 @@ def es_mensaje_no_deseado(path):
     result = knn.predict(vector_input)
     # [0:NotSpam, 1:Spam]
     if result == 0:
-        return False
+        print("¿Es mensaje no deseado?", False)
     else:
-        return True
+        print("¿Es mensaje no deseado?", True)
 
-print(
-    "kNN Detector -> ¿Este correo es spam? ",
-    es_mensaje_no_deseado(r"src/test/legítimo/622")
-)
+## Introducir la ruta del correo a evaluar en la llamada de la funcion
+es_mensaje_no_deseado("Enron-Spam/no_deseado/34")

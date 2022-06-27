@@ -6,7 +6,7 @@ from nltk.stem import WordNetLemmatizer
 from sklearn.feature_extraction.text import CountVectorizer
 import pickle as cPickle
 
-## Los metodos y lineas de codigo comentadas son para la version de prueba de la practica ##
+## Los metodos y lineas de codigo comentadas se utilizaron durante el desarrollo del proyecto##
 
 # Creating DataFrames
 dataframe1 = pd.read_csv("legit.csv")
@@ -62,7 +62,7 @@ def train_countvectorizer(dataframe):
     bag_of_words = count_vectorizer.fit_transform(dataframe)
     return bag_of_words
 
-# Create a bag of words vectorizer and fit it to the dataframe (Uncomment to train the vectorizer)
+# Create a bag of words vectorizer and fit it to the dataframe (Descomentar para entrenar)
 # cv = CountVectorizer(analyzer=bag_of_words_tokenizer)
 # bag_of_words = cv.fit_transform(dataframe["Email"])
 
