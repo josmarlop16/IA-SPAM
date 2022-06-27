@@ -53,6 +53,7 @@ def preproccessEmail(path):
                 cleaned_email.append(e)
     return cleaned_email
 
+
 def es_mensaje_no_deseado(path):
     # Preproccess the email
     transformed_text = preproccessEmail(path)
@@ -63,9 +64,10 @@ def es_mensaje_no_deseado(path):
     result = knn.predict(vector_input)
     # [0(False)->NotSpam, 1(True)->Spam]
     if result == 0:
-        False
+        return False
     else:
-        True
+        return True
+
 
 ## Introducir la ruta del correo a evaluar en la llamada de la funcion
 es_mensaje_no_deseado("Enron-Spam/no_deseado/34")
