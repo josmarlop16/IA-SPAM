@@ -61,11 +61,11 @@ def es_mensaje_no_deseado(path):
     vector_input = feat.transform(transformed_text)
     # Predict the email
     result = knn.predict(vector_input)
-    # [0:NotSpam, 1:Spam]
+    # [0(False)->NotSpam, 1(True)->Spam]
     if result == 0:
-        print("¿Es mensaje no deseado?", False)
+        False
     else:
-        print("¿Es mensaje no deseado?", True)
+        True
 
 ## Introducir la ruta del correo a evaluar en la llamada de la funcion
 es_mensaje_no_deseado("Enron-Spam/no_deseado/34")
